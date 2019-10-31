@@ -24,7 +24,8 @@ useSimsimi = function (threadID, text, api) {
             const response = await simsimi(text);
 
             api.sendMessage(response, threadID);
-        } catch {
+        } catch (e){
+            console.log("==============",e);
             api.sendMessage("Pet không hiểu bạn nói. Xin lỗi nha :(", threadID);
         }
     })();
