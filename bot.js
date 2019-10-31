@@ -1,3 +1,4 @@
+require('dotenv').config();
 const fs = require("fs");
 const login = require("facebook-chat-api");
 var request = require('request');
@@ -7,7 +8,7 @@ var botStatusThreads = {};
 var isSimsimi = false;
 
 const simsimi = require('simsimi')({
-    key: '/MzA7kiwEw1ZJoac8/EJfg11ja3zl0m+K3EyrAB6', //key get here: https://workshop.simsimi.com
+    key: process.env.SIMSIMI_KEY, //key get here: https://workshop.simsimi.com
     lang: "vn",
     atext_bad_prob_max: 0.0, // Chỉ số nói tục
     atext_bad_prob_min: 0.0,
