@@ -10,6 +10,7 @@
   "author": "PhucBinz",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
     "facebook-chat-api": "^1.6.1",

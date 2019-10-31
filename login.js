@@ -1,6 +1,9 @@
-﻿const fs = require("fs");
+﻿require('dotenv').config();
+
+const fs = require("fs");
 const login = require("facebook-chat-api");
 const readline = require("readline");
+
 
 var rl = readline.createInterface({
   input: process.stdin,
@@ -10,11 +13,12 @@ var rl = readline.createInterface({
 const option = {
     logLevel:"silent",
     forceLogin:true,
-   // userAgent:  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36"
+    userAgent:  "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0"
    //* cách lấy userAgent: F12-> tab console gõ 'navigator.userAgent' Link: https://imgur.com/oQ5hUkH
-}
+};
 
-const obj = {email: "FB_EMAIL", password: "FB_PASSWORD"};
+const obj = {email: process.env.FB_USERNAME, password: process.env.FB_PASSWORD};
+
 login(obj, option, (err, api) => {
     if(err) {
         switch (err.error) {

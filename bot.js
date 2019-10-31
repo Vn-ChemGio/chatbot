@@ -7,7 +7,7 @@ var botStatusThreads = {};
 var isSimsimi = false;
 
 const simsimi = require('simsimi')({
-    key: 'CRCZieXoJfutDa5Nag0H9GleKpwzFFJDLI0OnOXC', //key get here: https://workshop.simsimi.com
+    key: '/MzA7kiwEw1ZJoac8/EJfg11ja3zl0m+K3EyrAB6', //key get here: https://workshop.simsimi.com
     lang: "vn",
     atext_bad_prob_max: 0.0, // Chỉ số nói tục
     atext_bad_prob_min: 0.0,
@@ -22,33 +22,13 @@ useSimsimi = function (threadID, text, api) {
                 return;
             };
             const response = await simsimi(text);
+
             api.sendMessage(response, threadID);
         } catch {
             api.sendMessage("Pet không hiểu bạn nói. Xin lỗi nha :(", threadID);
         }
     })();
 }
-useUndertheseanlp = function (threadID, text, user, api) {
-    try {
-        request.post({
-            url: 'http://undertheseanlp.com:8000/chatbot',
-            body: JSON.stringify({
-                "text": text,
-                "user": user
-            }),
-            contentType: 'application/json'
-        }, function (error, response, body) {
-            const rp = JSON.parse(body);
-            if (rp != null && rp.output != undefined) {
-                api.sendMessage(rp.output, threadID);
-            }
-        });
-
-    } catch {
-        api.sendMessage("Bot không hiểu bạn nói. Xin lỗi nha :(", message.threadID);
-    }
-}
-
 
 blockGroupChat = function (threadID) {
     var blockGroupIds = ["id gourup chat", "id gourup chat"];
@@ -110,9 +90,8 @@ login({
             var user = yourId + "_" + message.threadID;
             console.log(user);
             //#1. use simsimi
-            // useSimsimi(message.threadID,message.body,api); 
-            //#2. use Undertheseanlp
-            useUndertheseanlp(message.threadID, message.body, user,api);
+            useSimsimi(message.threadID,message.body,api);
+
             return console.log("Pet next");
         }
 
