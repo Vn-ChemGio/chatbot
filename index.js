@@ -49,7 +49,7 @@ function reLogin (){
 function startBot (){
     console.log("==============restart BOT");
     fs.readFile('appstate.json',{encoding:'utf8'}, function (err, data) {
-        if(err)
+        if(err || data == "")
             return reLogin();
 
         login({
@@ -85,7 +85,8 @@ function startBot (){
                     api.sendMessage(" [From: Chủ tịch]: Đã ghi nhận yêu cầu của bạn, chủ tịch sẽ phản hồi sớm nhất có thể", message.threadID);
                 }
 
-                if (!answeredThreads.hasOwnProperty(message.threadID)) {
+                /*if (!answeredThreads.hasOwnProperty(message.threadID)) {*/
+                if (true) {
 
                     //Chức năng này dành cho người muốn bỏ qua ID nào đó
                     // Tìm id ở đây https://findmyfbid.in/
